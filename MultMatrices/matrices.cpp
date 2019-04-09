@@ -17,7 +17,7 @@ int leerDato(){
 
 int numeroAleatorio(void){
     //srand(time(NULL));
-    return 1 + rand() % 1000;
+    return 1 + rand() % 10;
 }
 
 /*
@@ -25,40 +25,39 @@ int multiplicar(int a, int b){
 	return a*b;
 } */
 
-void llenarMatriz(vector<int>& matriz){
+void llenarMatriz(vector<vector<int>>& matriz){
 	//srand(time(NULL));
     
 	for(int i=0; i<matriz.size();i++){
-		matriz[i]=numeroAleatorio();
+		for(int j=0;j<matriz.size();j++){
+			matriz[i][j]=numeroAleatorio();
+		}
 	}
 }
 
-void imprimir(vector<int>& matriz, int n){
+void imprimir(vector<vector<int>>& matriz, int n){
 	for(int i=0; i<n; i++){
 		for(int j=0;j<n;j++){
-			cout<<matriz[i*n+j]<<"\t";
+			cout<<matriz[i][j]<<"\t";
 		}
 		cout<<endl;
 	}
 }
 
-void multiplicarMatrices(vector<int>& matA, vector<int>& matB,vector<int>& matC, int n){
-	for (int g=0;g<n*n;g++){
-		int aux;
+void multiplicarMatrices(vector<vector<int>>& matA, vector<vector<int>>& matB,vector<vector<int>>& matC, int n){
+	for (int g=0;g<n;g++){
 		for(int i=0;i<n;i++){
 			for(int j=0;j<n;j++){
-				
+				matC[g][i] +=  matA[g][j] * matB[j][i];
 			}
 		}
-		matC=
 	}
-
 }
 
 int main(){
 	srand(time(NULL));
 	int n=leerDato();
-	vector<int> matA(n*n,0),matB(n*n,0),matC(n*n*n,0);
+	vector<vector<int>> matA(n,vector<int>(n)),matB(n,vector<int>(n)),matC(n,vector<int>(n));
 	llenarMatriz(matA);
 	llenarMatriz(matB);
 	cout<<"matA"<<endl<<endl;
@@ -66,8 +65,10 @@ int main(){
 	cout<<"\nmatB"<<endl<<endl;
 	imprimir(matB,n);
 	
-	multiplicarMatrices(matA,matB,matC,n);
 
+	multiplicarMatrices(matA,matB,matC,n);
+	cout<<"\nmatC"<<endl<<endl;
+	imprimir(matC,n);
 
 	//return 0;
 }
