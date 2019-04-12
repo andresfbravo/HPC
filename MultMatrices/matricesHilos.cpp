@@ -4,9 +4,6 @@
 #include <cstdlib>
 #include <vector>
 #include <ctime>
-//https://es.stackoverflow.com/questions/33290/matriz-como-par%C3%A1metro-c
-//https://foro.elhacker.net/programacion_cc/llenar_una_matriz_en_c-t362929.0.html
-
 
 using namespace std;
 
@@ -55,6 +52,8 @@ void multiplicarMatrices(vector<vector<int>>& matA, vector<vector<int>>& matB,ve
 		}
 	}
 }
+
+
 
 int main(int argc, char *argv[]){
 	unsigned t0,t1;
